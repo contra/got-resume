@@ -1,3 +1,12 @@
+# Fork Notes
+
+- Updated all dependencies
+- Removed toFile, you don't need it - just use the streaming mode and pipe to a fs stream
+- Updated streaming behavior
+- Promises to be responsive to PRs
+
+All thanks and credit to the original author.
+
 # got-resume.js
 
 # Fetch via HTTP/HTTPS using got with automatic resume after network failures
@@ -26,18 +35,6 @@ stream.pipe( fs.createWriteStream('foo.html') );
 stream.on('error', err => console.log('Failed!'));
 stream.on('end', () => console.log('Finished!'));
 ```
-
-### gotResume.toFile( path, [url], [options] ) -> Promise
-
-```js
-gotResume.toFile('google.html', 'http://google.com/')
-  .then(() => console.log('Finished!'))
-  .catch(err => console.log('Failed!'));
-```
-
-Promise only resolves (or rejects in case of an error) once transfer is ended and output file is closed.
-
-Promise is a Bluebird v2 promise. Bluebird v2 is used due to its cancellation feature.
 
 ### Options
 
@@ -125,8 +122,7 @@ function pre(transfer) {
 Provide a transform stream through which download stream is passed before being returned.
 
 ```js
-await gotResume.toFile(
-  'google.html.gz',
+await gotResume(
   'http://google.com/',
   {transform: zlib.createGzip()}
 );
@@ -147,18 +143,6 @@ Options to pass to `got`. See [got documentation](https://www.npmjs.com/package/
 ```js
 const stream = gotResume( 'http://google.com/', {got: {method: 'POST'} } );
 ```
-
-#### Promise
-
-`.toFile()` method only. Promise implementation to use for promises returned.
-
-#### onProgress
-
-`.toFile()` method only. Handler for `progress` event (see above).
-
-#### onResponse
-
-`.toFile()` method only. Handler for `response` event (see above).
 
 ### Events
 
@@ -200,8 +184,6 @@ The stream returned by `gotStream()` has an additional method `.cancel()`. Calli
 If the transfer is complete before `.cancel()` is called, no `error` event will be emitted.
 
 If `options.pre` function is supplied and `.cancel()` is called while `options.pre` is running, `.cancel()` method on the promise returned by `options.pre` will be called if it exists. Otherwise the transfer will abort once the promise resolves.
-
-The promise returned by `.toFile()` also has a `.cancel()` method. Calling cancel will cause the promise to be rejected with a Bluebird CancellationError.
 
 ### Transfer object
 

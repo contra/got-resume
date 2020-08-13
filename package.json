@@ -1,6 +1,6 @@
 {
-  "name": "got-resume",
-  "version": "1.4.5",
+  "name": "got-resume-next",
+  "version": "2.0.0",
   "description": "Fetch via HTTP/HTTPS using got with automatic resume after network failures",
   "main": "./lib/",
   "author": {
@@ -14,18 +14,18 @@
     "url": "https://github.com/overlookmotel/got-resume/issues"
   },
   "dependencies": {
-    "bluebird": "^3.0.0",
-    "got": "^9.0.0",
-    "pump": "^3.0.0"
+    "got": "^11.0.0",
+    "pump": "^3.0.0",
+    "through2": "^4.0.2"
   },
   "devDependencies": {
     "chai": "^4.2.0",
     "coveralls": "^3.0.2",
     "cross-env": "^7.0.0",
+    "fs-extra-promise": "^1.0.1",
     "istanbul": "^0.4.5",
     "jshint": "^2.9.6",
-    "mocha": "^7.0.0",
-    "fs-extra-promise": "^1.0.1"
+    "mocha": "^8.0.0"
   },
   "keywords": [
     "download",
@@ -39,7 +39,7 @@
     "fetch"
   ],
   "scripts": {
-    "test": "npm run jshint && npm run test-main",
+    "test": "npm run test-main",
     "jshint": "jshint lib test",
     "test-main": "mocha --check-leaks --colors -t 10000 -R spec \"test/**/*.test.js\"",
     "cover": "npm run cover-main && rm -rf coverage",
@@ -48,7 +48,7 @@
     "travis": "if [ $COVERAGE ]; then npm run coveralls; else npm test; fi"
   },
   "engines": {
-    "node": ">=6"
+    "node": ">=10"
   },
   "readmeFilename": "README.md",
   "license": "MIT"
