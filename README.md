@@ -1,8 +1,9 @@
 # Fork Notes
 
 - Updated all dependencies
-- Removed toFile, you don't need it - just use the streaming mode and pipe to a fs stream
-- Updated streaming behavior
+- Stripped it down to just the essential features (removed toFile, transform, etc. since you can do those yourself)
+- Rewrote all of the streaming behavior
+- Fixed issues with handling errors
 - Promises to be responsive to PRs
 
 All thanks and credit to the original author.
@@ -185,20 +186,3 @@ Transfer object is stored as `stream.transfer` and also passed to `options.pre` 
 Use `npm test` to run the tests. Use `npm run cover` to check coverage.
 
 Few tests so far but seems to work fine!
-
-## Changelog
-
-See [changelog.md](https://github.com/overlookmotel/got-resume/blob/master/changelog.md)
-
-## Issues
-
-If you discover a bug, please raise an issue on Github. https://github.com/overlookmotel/got-resume/issues
-
-## Contribution
-
-Pull requests are very welcome. Please:
-
-- ensure all tests pass before submitting PR
-- add an entry to changelog
-- add tests for new features
-- document new functionality/API additions in README
