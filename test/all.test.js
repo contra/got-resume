@@ -8,7 +8,8 @@ describe('Tests', () => {
     it('empty file', (done) => {
       const stream = gotResume(`${URL_PREFIX}empty.txt`)
 
-      let count = 0, err
+      let count = 0,
+        err
       stream.on('data', () => count++)
       stream.on('end', () => {
         if (err) return
@@ -24,7 +25,8 @@ describe('Tests', () => {
     it('short file', (done) => {
       const stream = gotResume(`${URL_PREFIX}short.txt`)
 
-      let out = '', err
+      let out = '',
+        err
       stream.on('data', (data) => {
         out += data.toString()
       })
