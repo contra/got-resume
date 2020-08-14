@@ -29,11 +29,11 @@ Designed for downloading large files. If transfer fails part-way through, will r
 ### gotResume( [url], [options] ) -> Stream
 
 ```js
-const stream = gotResume('http://google.com/');
-stream.pipe( fs.createWriteStream('foo.html') );
+const stream = gotResume('http://google.com/')
+stream.pipe(fs.createWriteStream('foo.html'))
 
-stream.on('error', err => console.log('Failed!'));
-stream.on('end', () => console.log('Finished!'));
+stream.on('error', err => console.log('Failed!'))
+stream.on('end', () => console.log('Finished!'))
 ```
 
 ### Options
@@ -43,7 +43,7 @@ stream.on('end', () => console.log('Finished!'));
 Alternative way to provide URL.
 
 ```js
-const stream = gotResume( {url: 'http://google.com/'} );
+const stream = gotResume({ url: 'http://google.com/' })
 ```
 
 #### attempts
@@ -53,7 +53,7 @@ Max number of attempts in a row yielding no data (i.e. failed connection, empty 
 Set to `0` for no limit. Default `10`.
 
 ```js
-const stream = gotResume( 'http://google.com/', {attempts: 0} );
+const stream = gotResume('http://google.com/', { attempts: 0 })
 ```
 
 #### attemptsTotal
@@ -76,8 +76,8 @@ If not provided, default backoff function starts with 1000ms and doubles each ti
 
 ```js
 function backoff(attempt) {
-  return Math.pow(2, attempt - 1) * 1000;
-};
+  return Math.pow(2, attempt - 1) * 1000
+}
 ```
 
 #### length
@@ -112,20 +112,9 @@ Useful where some authentication requires being set up before the transfer HTTP 
 
 ```js
 function pre(transfer) {
-  transfer.gotOptions.headers['user-agent'] = 'Stealth 2.0';
-  return Promise.resolve();
+  transfer.gotOptions.headers['user-agent'] = 'Stealth 2.0'
+  return Promise.resolve()
 }
-```
-
-#### transform
-
-Provide a transform stream through which download stream is passed before being returned.
-
-```js
-await gotResume(
-  'http://google.com/',
-  {transform: zlib.createGzip()}
-);
 ```
 
 #### log
@@ -133,7 +122,7 @@ await gotResume(
 Function to receive logging information e.g. HTTP responses.
 
 ```js
-const stream = gotResume( 'http://google.com/', {log: console.log} );
+const stream = gotResume('http://google.com/', { log: console.log })
 ```
 
 #### got
@@ -141,7 +130,7 @@ const stream = gotResume( 'http://google.com/', {log: console.log} );
 Options to pass to `got`. See [got documentation](https://www.npmjs.com/package/got) for details.
 
 ```js
-const stream = gotResume( 'http://google.com/', {got: {method: 'POST'} } );
+const stream = gotResume('http://google.com/', { got: { method: 'POST' } })
 ```
 
 ### Events
@@ -173,8 +162,8 @@ Emitted when first successful HTTP response is received. NB Not emitted again fo
 Useful for e.g. determining length of transfer:
 
 ```js
-const stream = gotResume('http://google.com/');
-stream.on( 'response', res => console.log('Length: ', stream.transfer.length) );
+const stream = gotResume('http://google.com/')
+stream.on('response', res => console.log('Length: ', stream.transfer.length))
 ```
 
 ### Cancellation
@@ -209,7 +198,7 @@ If you discover a bug, please raise an issue on Github. https://github.com/overl
 
 Pull requests are very welcome. Please:
 
-* ensure all tests pass before submitting PR
-* add an entry to changelog
-* add tests for new features
-* document new functionality/API additions in README
+- ensure all tests pass before submitting PR
+- add an entry to changelog
+- add tests for new features
+- document new functionality/API additions in README
