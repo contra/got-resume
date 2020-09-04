@@ -20,7 +20,7 @@
     "through2": "^4.0.2"
   },
   "devDependencies": {
-    "@stae/linters": "^0.1.8",
+    "@stae/linters": "^1.0.0",
     "coveralls": "^3.0.2",
     "cross-env": "^7.0.0",
     "istanbul": "^0.4.5",
