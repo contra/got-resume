@@ -89,14 +89,6 @@ If server does not provide `content-length` header, and `options.length` is not 
 
 If `options.length` is set, only that number of bytes will be fetched (i.e. file will be truncated).
 
-#### offset
-
-Number of bytes at start of resource to skip. Default `0`.
-
-NB Number of bytes to be streamed is `length - offset`. i.e. `length` is actually not length of response, but end of range.
-
-e.g. `{offset: 5, length: 10}` will stream 5 bytes.
-
 #### needLength
 
 Set to true if you require the length of the transfer to be retrieved at start of the transfer. Default: false
