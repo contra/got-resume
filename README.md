@@ -71,7 +71,7 @@ Function to determine wait in milliseconds before retry. Called with arguments `
 
 `transfer` is the internal `Transfer` object (see below).
 
-If function returns `false`, the transfer is aborted. If using this mechanism, `options.attempts` should be set to `0` so it does not interfere.
+If function returns `false`, the transfer is cancelled. If using this mechanism, `options.attempts` should be set to `0` so it does not interfere.
 
 If not provided, default backoff function starts with 1000ms and doubles each time:
 
